@@ -1,0 +1,50 @@
+@import './variables.css';
+@import './navbar.css';
+@import './carousel.css';
+
+@font-face {
+    font-family: 'Robot-file';
+    src: url("../assets/fonts/Roboto.ttf");
+}
+
+* {
+    margin: 0;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto-file', sans-serif;
+}
+
+img,
+svg {
+    max-width: 100%;
+    display: block;
+}
+
+#grid-body {
+    display: grid;
+    grid-template-columns: 100%;
+    min-height: 100%;
+}
+
+.login{
+    position: absolute;
+    border: 1px solid black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+}
+
+.login>button {
+    position: relative;
+    left: 50%;
+}

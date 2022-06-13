@@ -1,19 +1,38 @@
+<?php
+require_once('./php/session.php');
+
+$title = "Fletnix";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title><?php echo ($title) ?></title>
+    <meta name="author" content="Mstr.Shine">
+
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/navbar.css">
+    <link rel="stylesheet" href="./styles/carousel.css">
+    <link rel="stylesheet" href="./styles/variables.css">
 </head>
+
 <body>
-    <h1>It Works!</h1>
-    <?php echo('Hallo WT\'er, de webserver is online en PHP werkt.'); ?>
-    <br>
-    <br>
-    Alle technische informatie over je webserver vind je hier: <a href="phpinfo.php">http://<?=$_SERVER['HTTP_HOST']?>/phpinfo.php</a>
-    <br>
-    <br>
-    Een voorbeeld van een pagina die gegevens uit de database haalt vind je hier: <a href="moviegenres.php">http://<?=$_SERVER['HTTP_HOST']?>/moviegenres.php</a>
+    <?php require_once('./pages/modules/navbar.php'); ?>
+    <main id="grid-body">
+        <?php
+        if (isset($_SESSION['loggedIn'])) {
+            include('./html/carousel.html');
+        } else {
+            include_once('./pages/login.php');
+        }
+        ?>
+    </main>
+
+    <?php require_once('html/svg.html') ?>
 </body>
+
 </html>
