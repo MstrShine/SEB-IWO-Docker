@@ -3,7 +3,7 @@
 class pdo_mssql
 {
     public ?PDO $conn = null;
-    private string $hostname = '.\\SQLSERVER';
+    private string $hostname = 'database_server';
     private string $dbname = 'movies';
     private string $user = 'applicatie';
     private string $password = 'testpassword!Hallo-1244!';

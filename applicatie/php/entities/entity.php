@@ -2,8 +2,6 @@
 
 abstract class Entity
 {
-    public int $Id;
-
     public function createPropertyList()
     {
         $entity = $this;

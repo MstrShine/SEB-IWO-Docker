@@ -13,7 +13,8 @@ function login()
     {
         session_start();
         $connection = new pdo_mssql();
-        $connection->conn->
+        $sql = "SELECT password FROM Customer WHERE user_name = :username";
+        $res = $connection->conn->prepare($sql)->fetch();
     }
     catch (Exception $e)
     {
