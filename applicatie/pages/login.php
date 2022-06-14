@@ -1,24 +1,25 @@
 <form class="login" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username"><br><br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password"><br><br>
-    <button type="submit">Log in</button>
+    <input required class="simple-input" placeholder="Username" type="text" id="username" name="username"><br><br>
+    <input required class="simple-input" placeholder="Password" type="password" id="password" name="password"><br><br>
+    <button class="simple-btn" type="submit">Log in</button>
 </form>
 
 <?php
+include_once './php/connection.php';
 function login()
 {
+    $username = $_POST['username'];
     try
     {
-        session_start();
         $connection = new pdo_mssql();
-        $sql = "SELECT password FROM Customer WHERE user_name = :username";
-        $res = $connection->conn->prepare($sql)->fetch();
+        $sql = "SELECT TOP(1) password FROM Customer WHERE user_name = :username";
+        $stmt = $connection->conn->prepare($sql);
+        $stmt->execute(['username' => $username]);
+        $res = $stmt->fetch();
     }
     catch (Exception $e)
     {
-        session_destroy();
+
     }
 }
 

@@ -1,7 +1,8 @@
 <?php
 require_once('./php/session.php');
 
-$title = "Fletnix";
+global $title;
+$title = 'Fletnix';
 ?>
 
 <!DOCTYPE html>
@@ -11,13 +12,10 @@ $title = "Fletnix";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title><?php echo ($title) ?></title>
+    <title><?= $title ?></title>
     <meta name="author" content="Mstr.Shine">
 
     <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/navbar.css">
-    <link rel="stylesheet" href="./styles/carousel.css">
-    <link rel="stylesheet" href="./styles/variables.css">
 </head>
 
 <body>
