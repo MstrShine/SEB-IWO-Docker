@@ -1,5 +1,5 @@
 <?php
-include 'Entity.php';
+require_once 'Entity.php';
 
 class Movie extends Entity {
 

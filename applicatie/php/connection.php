@@ -28,6 +28,9 @@ class pdo_mssql
         }
     }
 
+    /**
+     * Close connection with DB
+     */
     public function close(): void
     {
         $this->conn = null;
@@ -51,7 +54,7 @@ class pdo_mssql
         $tablename = get_class($entity);
         $properties = $entity->createPropertyList();
         $placeholders = $entity->createPlaceholders();
-        $values = $entity->getValuesOutOfEntity();
+        $values = (array)$entity;
         $sql = "INSERT INTO $tablename ($properties) VALUES ($placeholders)";
         $this->conn ?? $this->connect();
         $isSuccesfull = $this->conn->prepare($sql)->execute($values);

@@ -1,6 +1,7 @@
 @import './variables.css';
 @import './navbar.css';
 @import './carousel.css';
+@import './modal.css';
 
 @font-face {
     font-family: 'Robot-file';
@@ -46,6 +47,10 @@ svg {
     box-shadow: 0px 10px 13px -7px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
 }
 
+#register select, #register option {
+    width: 100%;
+}
+
 .simple-btn {
     display: inline-block;
     outline: none;
@@ -61,6 +66,7 @@ svg {
     text-align: center;
 
     width: 100%;
+    margin-bottom: 5px;
 }
 
 .simple-btn:hover {
@@ -78,6 +84,7 @@ svg {
     background-color: #fff;
     color: rgb(8, 7, 7);
     transition: border .1s linear,background-color .1s linear;
+    margin-bottom: 5px;
 }
 
 .simple-input:focus-visible
@@ -86,4 +93,9 @@ svg {
     color: black;
     box-shadow: rgb(1, 118, 211) 0px 0px 3px 0px;
     outline: none;
+}
+
+.error {
+    color: red;
+    margin-bottom: 5px;
 }
