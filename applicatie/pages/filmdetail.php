@@ -18,14 +18,14 @@ fetchData();
         <div class="movie">
             <h2><?= $movie['title'] ?></h2>
             <div class="center-video">
-                <?php 
-                $src = $movie['URL'];
+                <?php
+                $src = '../assets/movies/' . $movie['URL'];
                 $display = <<<HTML
                     <video controls>
                         <source src="$src" type="video/mp4">
                     </video>
                 HTML;
-                echo($display);
+                echo ($display);
                 ?>
             </div>
             <h4>Description:</h4>

@@ -68,7 +68,7 @@ function search()
     $pdo = new pdo_mssql();
     $stmt = $pdo->conn->prepare($sql);
     if ($titleSql != '') {
-        $stmt->execute(['%'.$gTitle.'%']);
+        $stmt->execute(['%' . $gTitle . '%']);
     } else {
         $stmt->execute();
     }
@@ -103,17 +103,17 @@ function search()
         <div class="content">
             <div class="result">
                 <?php foreach ($movies as $movie) : ?>
-                    <div class="movie-card">
-                        <a href="/pages/filmdetail.php?fid=<?= $movie['fid'] ?>">
-                            <div class="movie-card-grid">
-                                <img src="<?= $movie['image'] ?>" alt="">
-                                <div class="movie-card-info">
-                                    <h2><?= $movie['title'] ?></h2>
-                                    <p><?= $movie['description'] ?></p>
-                                </div>
+                <div class="movie-card">
+                    <a href="/pages/filmdetail.php?fid=<?= $movie['fid'] ?>">
+                        <div class="movie-card-grid">
+                            <img src="../assets/images/<?= $movie['image'] ?>" alt="">
+                            <div class="movie-card-info">
+                                <h2><?= $movie['title'] ?></h2>
+                                <p><?= $movie['description'] ?></p>
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
+                </div>
                 <?php endforeach; ?>
             </div>
         </div>
