@@ -34,7 +34,7 @@ function login()
     $password = $_POST["password"];
     try {
         $connection = new pdo_mssql();
-        $sql = "SELECT TOP(1) password FROM Customer WHERE user_name = :username";
+        $sql = "SELECT TOP(1) password, firstname, lastname FROM Customer WHERE user_name = :username";
         $stmt = $connection->conn->prepare($sql);
         $stmt->execute([':username' => $username]);
         $res = $stmt->fetch();
@@ -42,6 +42,7 @@ function login()
         if ($pass != null || $pass != '') {
             if (password_verify($password, $pass)) {
                 $_SESSION["loggedIn"] = true;
+                $_SESSION["name"] = $res['firstname'] .' '. $res['lastname'];
                 unset($pass, $password);
                 header('Location: /', true, 302);
                 exit();

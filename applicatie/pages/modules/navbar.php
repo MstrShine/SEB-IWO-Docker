@@ -11,6 +11,7 @@
         </div>
         <div class="menu-items">
             <li><a href="/">Home</a></li>
+            <li><a href="/pages/search.php">Search</a></li>
             <?php
             if (isset($_SESSION["loggedIn"])) {
                 echo ("<li><a href=\"/pages/logout.php\">Log out</a></li>");
