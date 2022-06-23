@@ -4,7 +4,7 @@
 $title = 'Fletnix - Search';
 require_once './modules/head.php';
 require_once '../php/connection.php';
-require_once '../php/entities/Genre.php';
+require_once '../models/Genre.php';
 
 $genres;
 $movies = array();
@@ -47,11 +47,17 @@ function search()
         $titleSql .= "M.title like ?";
     }
 
+    if ($titleSql == '' && $genreSql == '') {
+        return;
+    }
+
     $sql = "SELECT 
         M.movie_id as fid,
         M.title as title, 
         M.description as description, 
-        M.cover_image as image 
+        M.duration as duration, 
+        M.cover_image as image, 
+        G.genre_name as genre 
     FROM Movie_Genre MG 
         INNER JOIN Movie M on MG.movie_id = M.movie_id
         INNER JOIN Genre G on MG.genre_name = G.genre_name 
@@ -109,7 +115,9 @@ function search()
                             <img src="../assets/images/<?= $movie['image'] ?>" alt="">
                             <div class="movie-card-info">
                                 <h2><?= $movie['title'] ?></h2>
-                                <p><?= $movie['description'] ?></p>
+                                <p><span>Genre:</span><?= $movie['genre'] ?></p>
+                                <p><span>Description:</span><?= $movie['description'] ?></p>
+                                <p><span>Duration:</span><?= $movie['duration'] ?> minutes</p>
                             </div>
                         </div>
                     </a>

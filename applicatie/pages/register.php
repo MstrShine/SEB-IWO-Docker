@@ -1,9 +1,9 @@
 <?php
 require_once '../php/connection.php';
-require_once '../php/entities/Country.php';
-require_once '../php/entities/Contract.php';
-require_once '../php/entities/Payment.php';
-require_once '../php/entities/Customer.php';
+require_once '../models/Country.php';
+require_once '../models/Contract.php';
+require_once '../models/Payment.php';
+require_once '../models/Customer.php';
 
 $connection = new pdo_mssql();
 $countries = $connection->selectAll(new Country(null));

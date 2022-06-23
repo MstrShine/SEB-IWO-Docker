@@ -1,7 +1,7 @@
 /* media scroller */
 .media-container {
     position: relative;
-    min-height: 20%;
+    height: 80%;
 }
 
 .media-scroller,
@@ -36,9 +36,8 @@
 
 .media-element>img {
     width: 100%;
-    height: 100%;
-    aspect-ratio: 16 / 9;
-    object-fit: cover;
+    height: 25vh;
+    object-fit: fill;
 }
 
 .media-element-info {

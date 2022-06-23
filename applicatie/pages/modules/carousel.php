@@ -1,226 +1,114 @@
-<div class="media-container">
-    <div class="media-scroller">
+<?php
+require_once './models/Movie.php';
+require_once './php/connection.php';
+function createCarousel(string $genreName)
+{
+    $movies = getMoviesByGenre($genreName);
+    $carouselString = <<<HTML
+    <div class="media-container">
+        <div class="media-scroller">
+    HTML;
 
-        <!--   Group 1 -->
-        <div class="media-group" id="group-1">
+    $chunked = array_chunk($movies, 4);
+    $i = 1;
+    foreach ($chunked as $chunk) {
+        $carouselString .= createCarouselGroup($genreName, $chunk, $i);
+        $i++;
+    }
 
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1641353989082-9b15fa661805?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODcyOA&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1642190672487-22bde32965f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODcyOA&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1641841344411-49dbd02896f4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODcyOA&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1643223723262-7ce785730cf6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODcyOA&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1640938776314-4d303f8a1380?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODc2Mw&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-
-            <a class="next" href="#group-2" aria-label="next">
-                <svg>
-                    <use href="#next"></use>
-                </svg>
-            </a>
-
-            <a class="next first-next" href="#group-1" aria-label="next">
-                <svg>
-                    <use href="#next"></use>
-                </svg>
-            </a>
+    $carouselString .= <<<HTML
+            <div class="navigation-indicators">
+    HTML;
+    for ($d = 0; $d < $i; $d++) {
+        $carouselString .= '<div></div>';
+    }
+    $carouselString .= <<<HTML
+            </div>   
         </div>
-
-        <!-- Group 2   -->
-        <div class="media-group" id="group-2">
-            <a class="previous" href="#group-1">
-                <svg>
-                    <use href="#previous"></use>
-                </svg>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1641259041823-e09935369105?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODc2Mw&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1642543492481-44e81e3914a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODc2Mw&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1641118961077-440391095cdc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODc2Mw&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1640767014413-b7d27c58b058?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODc5NQ&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1640948612546-3b9e29c23e98?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODc5NQ&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-            <a class="next" href="#group-3" aria-label="next">
-                <svg>
-                    <use href="#next"></use>
-                </svg>
-            </a>
-        </div>
-
-        <!-- Group 3   -->
-        <div class="media-group" id="group-3">
-            <a class="previous" href="#group-2">
-                <svg>
-                    <use href="#previous"></use>
-                </svg>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1642484865851-111e68695d71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODc5NQ&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1642237778207-24985a0bf876?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODc5NQ&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1642177584449-fa0b017dccc7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODc5NQ&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1643249960396-d39d2a63ce8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODg0Mw&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1641424222187-1c336d21804c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODg0OA&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-            <a class="next" href="#group-4" aria-label="next">
-                <svg>
-                    <use href="#next"></use>
-                </svg>
-            </a>
-        </div>
-
-        <!--  Group 4  -->
-        <div class="media-group" id="group-4">
-            <a class="previous" href="#group-3">
-                <svg>
-                    <use href="#previous"></use>
-                </svg>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1640998483268-d1faffa789ad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODkwNA&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1642034451735-2a8df1eaa2c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODg4OQ&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1640808238224-5520de93c939?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODg4OQ&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1643039952431-38adfa91f320?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODg0OA&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-            <a class="media-element">
-                <img src="https://images.unsplash.com/photo-1643148636637-58b3eb95cdad?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHx8MTY0MzM5ODg0OA&ixlib=rb-1.2.1&q=80&w=400"
-                    alt="">
-                <div class="media-element-info">
-                    <h4>Title</h4>
-                    <p>Decription</p>
-                </div>
-            </a>
-        </div>
-
-        <div class="navigation-indicators">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-
     </div>
-</div>
+    HTML;
+    echo ($carouselString);
+}
+
+function getMoviesByGenre(string $genreName)
+{
+    $movie = new Movie();
+    $propList = $movie->createPropertyList();
+    $sql = "SELECT Movie.$propList FROM Movie_Genre INNER JOIN Movie on Movie.movie_id = Movie_Genre.movie_id WHERE genre_name = :name";
+    $pdo = new pdo_mssql();
+    $stmt = $pdo->conn->prepare($sql);
+    $stmt->execute([":name" => $genreName]);
+
+    return $stmt->fetchAll();
+}
+
+function createCarouselGroup($genreName, $movies, int $i)
+{
+    $carouselGroup = <<<HTML
+        <div class="media-group" id="$genreName-$i">
+    HTML;
+
+    if ($i > 1) {
+        $prev = $i - 1;
+        $carouselGroup .= <<<HTML
+            <a class="previous" href="#$genreName-$prev">
+                <svg>
+                    <use href="#previous"></use>
+                </svg>
+            </a>
+        HTML;
+    }
+
+    foreach ($movies as $m) {
+        $carouselGroup .= createCarouselElement($m);
+    }
+
+    if ($i == 1) {
+        $carouselGroup .= <<<HTML
+                <a class="next" href="#$genreName-2" aria-label="next">
+                    <svg>
+                        <use href="#next"></use>
+                    </svg>
+                </a>
+    
+                <a class="next first-next" href="#$genreName-1" aria-label="next">
+                    <svg>
+                        <use href="#next"></use>
+                    </svg>
+                </a>
+            </div>
+        HTML;
+    } else {
+        $next = $i + 1;
+        $carouselGroup .= <<<HTML
+                <a class="next" href="#$genreName-$next" aria-label="next">
+                    <svg>
+                        <use href="#next"></use>
+                    </svg>
+                </a>
+            </div>
+        HTML;
+    }
+
+    return $carouselGroup;
+}
+
+function createCarouselElement($movie)
+{
+    $coverImage = $movie['cover_image'];
+    $title = $movie['title'];
+    $description = $movie['description'];
+    $fid = $movie['movie_id'];
+    $toEcho = <<<HTML
+        <a class="media-element" href="/pages/filmdetail.php?fid=$fid">
+            <img src="./assets/images/$coverImage"
+                alt="">
+            <div class="media-element-info">
+                <h4>$title</h4>
+                <p>$description</p>
+            </div>
+        </a>        
+    HTML;
+
+    return $toEcho;
+}

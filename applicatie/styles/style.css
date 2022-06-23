@@ -22,6 +22,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto-file', sans-serif;
+    width: 100%;
 }
 
 img,
@@ -30,9 +31,10 @@ svg {
     display: block;
 }
 
-#grid-body {
+.grid-body {
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-rows: 100px repeat(2, 33vh);
     min-height: 100%;
 }
 
@@ -42,8 +44,12 @@ svg {
     margin-bottom: 2%;
 }
 
-.welcome > h2 > span {
+.welcome>h2>span {
     color: var(--main-color);
+}
+
+.carousel {
+    height: 100%;
 }
 
 .carousel-title {
@@ -52,7 +58,8 @@ svg {
     color: var(--main-color);
 }
 
-.login {
+.login,
+.contact {
     position: absolute;
     border: 2px solid var(--main-color);
     border-radius: 3px;
@@ -116,41 +123,58 @@ svg {
     margin-bottom: 5px;
 }
 
+@media screen {
+    .movie-grid {
+        max-height: 100vh;
+        max-width: 93vw;
+    }
+}
+
 .movie-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-
-    min-width: 100vw;
-    max-width: 100vw;
-    min-height: 93vh;
-    max-height: 93vh;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
 }
 
 .movie-grid .movie {
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 1;
-    grid-row-end: 3;
+    grid-row-end: 2;
 
     width: 100%;
-    height: 2fr;
+    height: 100%;
 
     border-bottom: var(--main-color) 1px solid;
 }
 
 .movie-grid .cast {
+    grid-row-start: 2;
     width: 100%;
-    height: 1fr;
+    height: 25%;
 }
 
 .movie-grid .director {
     width: 100%;
-    height: 1fr;
+    height: 25%;
 }
 
-.center-video {
-    height: 75%;
+.center-video video {
+    height: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+}
+
+.center-video div {
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+    color: var(--main-color);
+
+    text-align: center;
+    vertical-align: middle;
 }
 
 .search-grid {
@@ -176,7 +200,7 @@ svg {
     border-right: var(--main-color) 1px solid;
 }
 
-.search{
+.search {
     padding-left: 1%;
     border-bottom: var(--main-color) 1px solid;
 }
@@ -195,14 +219,24 @@ svg {
 }
 
 .content .result .movie-card {
-    height: 15vh;
     border-bottom: var(--main-color) 0.5px solid;
+    overflow: hidden;
 }
 
 .movie-card .movie-card-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: 100%;
+}
+
+.movie-card-grid img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.movie-card-info>p>span {
+    font-weight: bold;
 }
 
 .movie-card a {

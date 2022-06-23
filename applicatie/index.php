@@ -1,7 +1,6 @@
 <?php
+require_once('./pages/modules/carousel.php');
 $title = 'Fletnix';
-if (isset($_SESSION['loggedIn'])) {
-}
 ?>
 
 <!DOCTYPE html>
@@ -10,7 +9,7 @@ if (isset($_SESSION['loggedIn'])) {
 
 <body>
     <?php require_once('./pages/modules/navbar.php'); ?>
-    <main id="grid-body">
+    <main class="grid-body">
         <div class="welcome">
             <?php if (isset($_SESSION['loggedIn'])) {
                 echo ("<h2>Welcome back <span>" . $_SESSION['name'] . "</span>!</h2>");
@@ -22,13 +21,18 @@ if (isset($_SESSION['loggedIn'])) {
                 echo ($welcome);
             } ?>
         </div>
-        <div>
-            <h2 class="carousel-title">Test</h2>
+        <div class="carousel">
+            <h2 class="carousel-title">Action</h2>
             <?php
-            include('./pages/modules/carousel.php');
+            createCarousel('Action');
             ?>
         </div>
-
+        <div class="carousel">
+            <h2 class="carousel-title">Thriller</h2>
+            <?php
+            createCarousel('Thriller');
+            ?>
+        </div>
     </main>
 
     <?php require_once('html/svg.html') ?>

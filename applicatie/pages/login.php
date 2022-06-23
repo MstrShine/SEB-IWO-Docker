@@ -11,7 +11,8 @@ require_once './modules/head.php';
         <div class="login">
             <form method="post">
                 <input required class="simple-input" placeholder="Username" type="text" id="username" name="username">
-                <input required class="simple-input" placeholder="Password" type="password" id="password" name="password">
+                <input required class="simple-input" placeholder="Password" type="password" id="password"
+                    name="password">
                 <button class="simple-btn" type="submit">Log in</button>
             </form>
             <?php if (isset($_SESSION["login-error"])) echo ("<p class=\"error\">" . (string)$_SESSION["errors"] . "</p>"); ?>
@@ -42,8 +43,15 @@ function login()
         if ($pass != null || $pass != '') {
             if (password_verify($password, $pass)) {
                 $_SESSION["loggedIn"] = true;
-                $_SESSION["name"] = $res['firstname'] .' '. $res['lastname'];
+                $_SESSION["name"] = htmlspecialchars($res['firstname'] . ' ' . $res['lastname']);
                 unset($pass, $password);
+
+                $redirect = $_SESSION['prevPage'];
+                if (str_contains($redirect, 'fid=')) {
+                    header("Location: $redirect", true, 302);
+                    exit();
+                }
+
                 header('Location: /', true, 302);
                 exit();
             } else {

@@ -8,7 +8,7 @@ $directors;
 $title = "Fletnix";
 require_once './modules/head.php';
 require_once '../php/connection.php';
-require_once '../php/entities/Movie.php';
+require_once '../models/Movie.php';
 fetchData();
 ?>
 
@@ -19,17 +19,23 @@ fetchData();
             <h2><?= $movie['title'] ?></h2>
             <div class="center-video">
                 <?php
-                $src = '../assets/movies/' . $movie['URL'];
-                $display = <<<HTML
-                    <video controls>
-                        <source src="$src" type="video/mp4">
-                    </video>
-                HTML;
-                echo ($display);
+                if (isset($_SESSION['loggedIn'])) {
+                    $src = '../assets/movies/' . $movie['URL'];
+                    $display = <<<HTML
+                        <video controls>
+                            <source src="$src" type="video/mp4">
+                        </video>
+                    HTML;
+                    echo ($display);
+                } else {
+                    echo ('<div><h2>You can\'t watch the movie without an account so please log-in</h2>');
+                    echo ('<a href="pages/login.php">you can login or register here</a></div>');
+                }
                 ?>
             </div>
             <h4>Description:</h4>
             <p><?= $movie['description'] ?></p>
+            <p>Duration: <?= $movie['duration'] ?> minutes</p>
         </div>
         <div class="cast">
             <h2>Cast:</h2>
@@ -86,4 +92,6 @@ function fetchData()
     $stmt->execute($fetchArray);
     $directors = $stmt->fetchAll();
 }
+
+$_SESSION['prevPage'] = basename($_SERVER['REQUEST_URI']);
 ?>
