@@ -5,16 +5,32 @@ $title = 'Fletnix - Search';
 require_once './modules/head.php';
 require_once '../php/connection.php';
 require_once '../models/Genre.php';
+require_once '../models/Movie.php';
 
 $genres;
 $movies = array();
-fetchFilterData();
-function fetchFilterData()
+fetchFilterDataAndAllMovies();
+function fetchFilterDataAndAllMovies()
 {
     global $genres;
+    global $movies;
 
     $pdo = new pdo_mssql();
     $genres = $pdo->selectAll(new Genre());
+
+    $sql = "SELECT 
+        M.movie_id as movie_id,
+        M.title as title, 
+        M.description as description, 
+        M.duration as duration, 
+        M.cover_image as cover_image, 
+        G.genre_name as genre 
+    FROM Movie_Genre MG 
+        INNER JOIN Movie M on MG.movie_id = M.movie_id
+        INNER JOIN Genre G on MG.genre_name = G.genre_name";
+    $stmt = $pdo->conn->prepare($sql);
+    $stmt->execute();
+    $movies = $stmt->fetchAll();
 }
 
 if (isset($_GET['genre']) || isset($_GET['title'])) {
@@ -52,11 +68,11 @@ function search()
     }
 
     $sql = "SELECT 
-        M.movie_id as fid,
+        M.movie_id as movie_id,
         M.title as title, 
         M.description as description, 
         M.duration as duration, 
-        M.cover_image as image, 
+        M.cover_image as cover_image, 
         G.genre_name as genre 
     FROM Movie_Genre MG 
         INNER JOIN Movie M on MG.movie_id = M.movie_id
@@ -110,9 +126,9 @@ function search()
             <div class="result">
                 <?php foreach ($movies as $movie) : ?>
                 <div class="movie-card">
-                    <a href="/pages/filmdetail.php?fid=<?= $movie['fid'] ?>">
+                    <a href="/pages/filmdetail.php?fid=<?= $movie['movie_id'] ?>">
                         <div class="movie-card-grid">
-                            <img src="../assets/images/<?= $movie['image'] ?>" alt="">
+                            <img src="../assets/images/<?= $movie['cover_image'] ?>" alt="">
                             <div class="movie-card-info">
                                 <h2><?= $movie['title'] ?></h2>
                                 <p><span>Genre:</span><?= $movie['genre'] ?></p>

@@ -4,7 +4,7 @@
 $title = 'Fletnix - Login';
 require_once './modules/head.php';
 if (isset($_SESSION['loggedIn'])) {
-    header("Location: /");
+    header("Location: /", true, 302);
     exit();
 }
 ?>
