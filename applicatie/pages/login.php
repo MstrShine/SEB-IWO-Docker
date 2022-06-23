@@ -3,6 +3,10 @@
 <?php
 $title = 'Fletnix - Login';
 require_once './modules/head.php';
+if (isset($_SESSION['loggedIn'])) {
+    header("Location: /");
+    exit();
+}
 ?>
 
 <body>
@@ -48,6 +52,7 @@ function login()
 
                 $redirect = $_SESSION['prevPage'];
                 if (str_contains($redirect, 'fid=')) {
+                    $_SESSION['prevPage'] = null;
                     header("Location: $redirect", true, 302);
                     exit();
                 }
