@@ -64,7 +64,8 @@
     font-size: 0.75vw;
 }
 
-.media-element:hover .media-element-info {
+.media-element:hover .media-element-info,
+.media-element:active .media-element-info {
     display: inline-block;
 }
 
