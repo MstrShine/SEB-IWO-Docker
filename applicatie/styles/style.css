@@ -108,6 +108,9 @@ svg {
     margin-bottom: 5px;
 }
 
+.redirect-btn {
+    display: inline;
+}
 
 /* START LOGIN/REGISTER AND CONTACT CSS */
 .login {

@@ -1,6 +1,6 @@
 <nav class="navbar">
     <div class="nav-container">
-        <input class="checkbox" type="checkbox" name="" id="" />
+        <input class="checkbox" type="checkbox" />
         <div class="hamburger-lines">
             <span class="line line1"></span>
             <span class="line line2"></span>
@@ -13,7 +13,7 @@
             } ?>
             <h1><a href="/"><span class="logo-other">Flet</span>Nix</a></h1>
         </div>
-        <div class="menu-items">
+        <menu class="menu-items">
             <li><a href="/">Home</a></li>
             <li><a href="/pages/search.php">Search</a></li>
             <li><a href="/pages/contact.php">Contact</a></li>
@@ -24,6 +24,6 @@
                 echo ("<li><a href=\"/pages/login.php\">Login</a></li>");
             }
             ?>
-        </div>
+        </menu>
     </div>
 </nav>

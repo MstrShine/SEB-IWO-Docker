@@ -23,11 +23,11 @@ unset($connection);
                 <input required class="simple-input" type="text" name="firstname" placeholder="Firstname">
                 <input required class="simple-input" type="text" name="lastname" placeholder="Lastname">
                 <input required class="simple-input" type="date" name="birthdate">
-                <label for="gender">Gender:</label>
+                <label>Gender:</label>
                 <input required type="radio" name="gender" value="M">M
                 <input required type="radio" name="gender" value="V">V
                 <select required class="simple-input" name="country">
-                    <option selected disabled>Select your country:</option>
+                    <option selected disabled value="">Select your country:</option>
                     <?php
                     foreach ($countries as $country) {
                         $countryName = $country["country_name"];
@@ -38,8 +38,8 @@ unset($connection);
                 <input required class="simple-input" type="text" name="reg_username" placeholder="Username">
                 <input required class="simple-input" type="password" name="reg_password" placeholder="Password">
                 <input required class="simple-input" type="text" name="card_number" placeholder="Card number">
-                <select required class="simple-input" type="text" name="payment_method">
-                    <option selected disabled>Select your payment method:</option>
+                <select required class="simple-input" name="payment_method">
+                    <option selected disabled value="">Select your payment method:</option>
                     <?php
                     foreach ($payMethods as $method) {
                         $m = $method["payment_method"];
@@ -48,7 +48,7 @@ unset($connection);
                     ?>
                 </select>
                 <select required class="simple-input" name="contract_type">
-                    <option selected disabled>Select your contract:</option>
+                    <option selected disabled value="">Select your contract:</option>
                     <?php
                     foreach ($contracts as $contract) {
                         $type = $contract["contract_type"];

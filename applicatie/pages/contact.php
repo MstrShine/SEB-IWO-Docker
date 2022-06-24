@@ -21,8 +21,7 @@ require_once './modules/head.php';
             </div>
             <div>
                 <h3>Privacyverklaring:</h3>
-                <a href="../assets/privacyverklaring.pdf" download="privacyverklaring fletnix"><button
-                        class="simple-btn">Download</button></a>
+                <a class="simple-btn" href="../assets/privacyverklaring.pdf" download="privacyverklaring fletnix">Download</a>
             </div>
             <div class="about-us">
                 <h3>About us:</h3>

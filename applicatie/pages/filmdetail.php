@@ -50,12 +50,14 @@ fetchData();
         </div>
         <div class="director">
             <h2>Director(s):</h2>
-            <?php
-            foreach ($directors as $d) {
-                $directorString = '' . $d['firstname'] . ' ' . $d['lastname'];
-                echo ("<li>$directorString</li>");
-            }
-            ?>
+            <ul>
+                <?php
+                foreach ($directors as $d) {
+                    $directorString = '' . $d['firstname'] . ' ' . $d['lastname'];
+                    echo ("<li>$directorString</li>");
+                }
+                ?>
+            </ul>
         </div>
     </main>
 </body>

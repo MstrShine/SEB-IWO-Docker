@@ -20,7 +20,7 @@ if (isset($_SESSION['loggedIn'])) {
                 <button class="simple-btn" type="submit">Log in</button>
             </form>
             <?php if (isset($_SESSION["login-error"])) echo ("<p class=\"error\">" . (string)$_SESSION["errors"] . "</p>"); ?>
-            <a href="pages/login.php#register"><button class="simple-btn">Register</button></a>
+            <form class="redirect-btn" action="pages/login.php#register"><button class="simple-btn">Register</button></form>
         </div>
     </main>
     <?php require_once './register.php'; ?>
