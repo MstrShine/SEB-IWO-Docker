@@ -3,98 +3,15 @@
 <?php
 $title = 'Fletnix - Search';
 require_once './modules/head.php';
-require_once '../php/connection.php';
-require_once '../models/Genre.php';
-require_once '../models/Movie.php';
+require_once '../php/search.php';
 
-$genres;
-$movies = array();
-fetchFilterDataAndAllMovies();
-function fetchFilterDataAndAllMovies()
-{
-    global $genres;
-    global $movies;
-
-    $pdo = new pdo_mssql();
-    $genres = $pdo->selectAll(new Genre());
-
-    $sql = "SELECT 
-        M.movie_id as movie_id,
-        M.title as title, 
-        M.description as description, 
-        M.duration as duration, 
-        M.cover_image as cover_image, 
-        G.genre_name as genre 
-    FROM Movie_Genre MG 
-        INNER JOIN Movie M on MG.movie_id = M.movie_id
-        INNER JOIN Genre G on MG.genre_name = G.genre_name";
-    $stmt = $pdo->conn->prepare($sql);
-    $stmt->execute();
-    $movies = $stmt->fetchAll();
-}
+$genres = fetchFilterData();
+$movies = fetchAllMoviesWithGenre();
 
 if (isset($_GET['genre']) || isset($_GET['title'])) {
-    search();
-}
-
-function search()
-{
-    global $movies;
-    $sGenre = $_GET['genre'] ?? array();
-    $gTitle = $_GET['title'];
-
-    $genreSql = '';
-    if (count($sGenre) > 0 || $sGenre != null) {
-        $genreSql = "MG.genre_name in (";
-        $i = 0;
-        foreach ($sGenre as $genre) {
-            if ($i == 0) {
-                $genreSql .= "'" . $genre . "'";
-                $i++;
-            } else {
-                $genreSql .= ", '" . $genre . "'";
-            }
-        }
-        $genreSql .= ')';
-    }
-
-    $titleSql = "";
-    if ($gTitle != '') {
-        $titleSql .= "M.title like ?";
-    }
-
-    if ($titleSql == '' && $genreSql == '') {
-        return;
-    }
-
-    $sql = "SELECT 
-        M.movie_id as movie_id,
-        M.title as title, 
-        M.description as description, 
-        M.duration as duration, 
-        M.cover_image as cover_image, 
-        G.genre_name as genre 
-    FROM Movie_Genre MG 
-        INNER JOIN Movie M on MG.movie_id = M.movie_id
-        INNER JOIN Genre G on MG.genre_name = G.genre_name 
-    WHERE ";
-
-    if ($genreSql != '' && $titleSql != '') {
-        $sql .= $genreSql . ' AND ' . $titleSql;
-    } else if ($genreSql != '') {
-        $sql .= $genreSql;
-    } else if ($titleSql != '') {
-        $sql .= $titleSql;
-    }
-
-    $pdo = new pdo_mssql();
-    $stmt = $pdo->conn->prepare($sql);
-    if ($titleSql != '') {
-        $stmt->execute(['%' . $gTitle . '%']);
-    } else {
-        $stmt->execute();
-    }
-    $movies = $stmt->fetchAll();
+    $genreFilter = $_GET['genre'] ?? array();
+    $titleFilter = $_GET['title'];
+    $movies = searchMoviesByFilters($genreFilter, $titleFilter);
 }
 ?>
 

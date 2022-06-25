@@ -19,7 +19,7 @@
             <li><a href="/pages/contact.php">Contact</a></li>
             <?php
             if (isset($_SESSION["loggedIn"])) {
-                echo ("<li><a href=\"/pages/logout.php\">Log out</a></li>");
+                echo ("<li><a href=\"/php/logout.php\">Log out</a></li>");
             } else {
                 echo ("<li><a href=\"/pages/login.php\">Login</a></li>");
             }
