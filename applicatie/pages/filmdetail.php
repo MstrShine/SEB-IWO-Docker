@@ -38,6 +38,7 @@ if (isset($_GET["fid"])) {
             <h4>Description:</h4>
             <p><?= $movie['description'] ?></p>
             <p>Duration: <?= $movie['duration'] ?> minutes</p>
+            <p>Publication year: <?= $movie['publication_year'] ?></p>
         </section>
         <section class="cast">
             <h2>Cast:</h2>

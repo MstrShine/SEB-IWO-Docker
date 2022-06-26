@@ -20,7 +20,8 @@ function fetchAllMoviesWithGenre()
         M.description as description, 
         M.duration as duration, 
         M.cover_image as cover_image, 
-        G.genre_name as genre 
+        G.genre_name as genre,
+        M.publication_year as year 
     FROM Movie_Genre MG 
         INNER JOIN Movie M on MG.movie_id = M.movie_id
         INNER JOIN Genre G on MG.genre_name = G.genre_name";

@@ -48,9 +48,10 @@ if (isset($_GET['genre']) || isset($_GET['title'])) {
                             <img src="../assets/images/<?= $movie['cover_image'] ?>" alt="">
                             <article class="movie-card-info">
                                 <h2><?= $movie['title'] ?></h2>
-                                <p><span>Genre:</span><?= $movie['genre'] ?></p>
-                                <p><span>Description:</span><?= $movie['description'] ?></p>
-                                <p><span>Duration:</span><?= $movie['duration'] ?> minutes</p>
+                                <p><span>Genre: </span><?= $movie['genre'] ?></p>
+                                <p><span>Description: </span><?= $movie['description'] ?></p>
+                                <p><span>Duration: </span><?= $movie['duration'] ?> minutes</p>
+                                <p><span>Publication year: </span><?= $movie['year'] ?></p>
                             </article>
                         </div>
                     </a>
