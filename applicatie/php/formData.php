@@ -1,5 +1,5 @@
 <?php
-require_once '../php/connection.php';
+require_once '../php/data/connection.php';
 
 require_once '../models/Country.php';
 require_once '../models/Contract.php';

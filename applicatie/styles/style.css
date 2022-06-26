@@ -24,12 +24,12 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto-file', sans-serif;
-    width: 100%;
+    width: var(--max-percentage);
 }
 
 img,
 svg {
-    max-width: 100%;
+    max-width: var(--max-percentage);
     display: block;
 }
 
@@ -37,7 +37,7 @@ svg {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 100px repeat(2, 33vh);
-    min-height: 100%;
+    min-height: var(--max-percentage);
 }
 
 .welcome {
@@ -51,7 +51,7 @@ svg {
 }
 
 .carousel {
-    height: 100%;
+    height: var(--max-percentage);
 }
 
 .carousel-title {
@@ -74,7 +74,7 @@ svg {
     font-weight: 400;
     text-align: center;
 
-    width: 100%;
+    width: var(--max-percentage);
     margin-bottom: 5px;
 }
 
@@ -85,7 +85,7 @@ svg {
 .simple-input {
     display: inline-block;
     padding: 0 16px 0 12px;
-    width: 100%;
+    width: var(--max-percentage);
     line-height: 30px;
     height: 32px;
     border: 1px solid #dddbda;
@@ -130,7 +130,7 @@ svg {
 
 #register select,
 #register option {
-    width: 100%;
+    width: var(--max-percentage);
 }
 
 .contact {

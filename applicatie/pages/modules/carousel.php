@@ -1,6 +1,6 @@
 <?php
 require_once './models/Movie.php';
-require_once './php/connection.php';
+require_once './php/data/connection.php';
 function createCarousel(string $genreName)
 {
     $movies = getMoviesByGenre($genreName);

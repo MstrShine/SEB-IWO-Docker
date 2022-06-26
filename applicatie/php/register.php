@@ -1,5 +1,5 @@
 <?php
-require_once '../php/connection.php';
+require_once '../php/data/connection.php';
 
 session_start();
 
@@ -36,10 +36,7 @@ function register()
     $mail = $_POST["mail"];
 
     $connection = new pdo_mssql();
-    $sql = "SELECT COUNT(*) as 'count' FROM Customer where customer_mail_address = :mail";
-    $stmt = $connection->conn->prepare($sql);
-    $stmt->execute([':mail' => $mail]);
-    $count = $stmt->fetch();
+    $count = $connection->checkMailCount($mail);
 
     if ($count['count'] > 0) {
         $_SESSION['register-error'] = 'Email is allready in use';

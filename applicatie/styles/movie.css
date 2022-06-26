@@ -9,7 +9,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    width: 100%;
+    width: var(--max-percentage);
 }
 
 .movie-grid h2,
@@ -26,29 +26,29 @@
     grid-row-start: 1;
     grid-row-end: 2;
 
-    width: 100%;
-    height: 100%;
+    width: var(--max-percentage);
+    height: var(--max-percentage);
 
     border-bottom: var(--main-color) 1px solid;
 }
 
 .movie-grid .cast {
     grid-row-start: 2;
-    width: 100%;
+    width: var(--max-percentage);
     height: 25%;
 }
 
 .movie-grid .director {
-    width: 100%;
+    width: var(--max-percentage);
     height: 25%;
 }
 
 .center-video video {
-    height: 100%;
+    height: var(--max-percentage);
     display: block;
     margin-left: auto;
     margin-right: auto;
-    max-width: 100%;
+    max-width: var(--max-percentage);
 }
 
 .center-video div {

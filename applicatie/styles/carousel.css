@@ -14,10 +14,10 @@
 .media-scroller {
     overflow-x: hidden;
     scroll-behavior: smooth;
-    grid-auto-columns: 100%;
+    grid-auto-columns: var(--max-percentage);
     padding: 0 3rem;
     scroll-padding-inline: 3rem;
-    height: 100%;
+    height: var(--max-percentage);
 }
 
 .media-group {
@@ -35,7 +35,7 @@
 }
 
 .media-element>img {
-    width: 100%;
+    width: var(--max-percentage);
     height: 25vh;
     object-fit: fill;
 }
@@ -45,7 +45,7 @@
     bottom: 0;
 
     height: 3vw;
-    width: 100%;
+    width: var(--max-percentage);
     display: none;
     border-radius: 0.25rem;
     overflow: hidden;
