@@ -71,6 +71,17 @@ class pdo_mssql
         return $query->execute();
     }
 
+    function getMoviesByGenre(string $genreName)
+    {
+        $movie = new Movie();
+        $propList = $movie->createPropertyList();
+        $sql = "SELECT Movie.$propList FROM Movie_Genre INNER JOIN Movie on Movie.movie_id = Movie_Genre.movie_id WHERE genre_name = :name";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([":name" => $genreName]);
+
+        return $stmt->fetchAll();
+    }
+
     public function fetchAllMoviesWithGenre()
     {
         $sql = "SELECT 

@@ -3,7 +3,8 @@ require_once './models/Movie.php';
 require_once './php/data/connection.php';
 function createCarousel(string $genreName)
 {
-    $movies = getMoviesByGenre($genreName);
+    $pdo = new pdo_mssql();
+    $movies = $pdo->getMoviesByGenre($genreName);
     $carouselString = <<<HTML
     <div class="media-container">
         <div class="media-scroller">
@@ -28,18 +29,6 @@ function createCarousel(string $genreName)
     </div>
     HTML;
     echo ($carouselString);
-}
-
-function getMoviesByGenre(string $genreName)
-{
-    $movie = new Movie();
-    $propList = $movie->createPropertyList();
-    $sql = "SELECT Movie.$propList FROM Movie_Genre INNER JOIN Movie on Movie.movie_id = Movie_Genre.movie_id WHERE genre_name = :name";
-    $pdo = new pdo_mssql();
-    $stmt = $pdo->conn->prepare($sql);
-    $stmt->execute([":name" => $genreName]);
-
-    return $stmt->fetchAll();
 }
 
 function createCarouselGroup($genreName, $movies, int $i)
