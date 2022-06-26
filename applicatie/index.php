@@ -21,18 +21,18 @@ $title = 'Fletnix';
                 echo ($welcome);
             } ?>
         </div>
-        <div class="carousel">
+        <section class="carousel">
             <h2 class="carousel-title">Action</h2>
             <?php
             createCarousel('Action');
             ?>
-        </div>
-        <div class="carousel">
+        </section>
+        <section class="carousel">
             <h2 class="carousel-title">Thriller</h2>
             <?php
             createCarousel('Thriller');
             ?>
-        </div>
+        </section>
     </main>
 
     <?php require_once('html/svg.html') ?>

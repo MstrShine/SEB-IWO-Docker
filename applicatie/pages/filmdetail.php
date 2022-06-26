@@ -17,7 +17,7 @@ if (isset($_GET["fid"])) {
 <body>
     <?php require_once './modules/navbar.php'; ?>
     <main class="movie-grid">
-        <div class="movie">
+        <section class="movie">
             <h2><?= $movie['title'] ?></h2>
             <div class="center-video">
                 <?php
@@ -38,8 +38,8 @@ if (isset($_GET["fid"])) {
             <h4>Description:</h4>
             <p><?= $movie['description'] ?></p>
             <p>Duration: <?= $movie['duration'] ?> minutes</p>
-        </div>
-        <div class="cast">
+        </section>
+        <section class="cast">
             <h2>Cast:</h2>
             <ul>
                 <?php
@@ -49,8 +49,8 @@ if (isset($_GET["fid"])) {
                 }
                 ?>
             </ul>
-        </div>
-        <div class="director">
+        </section>
+        <section class="director">
             <h2>Director(s):</h2>
             <ul>
                 <?php
@@ -60,7 +60,7 @@ if (isset($_GET["fid"])) {
                 }
                 ?>
             </ul>
-        </div>
+        </section>
     </main>
 </body>
 

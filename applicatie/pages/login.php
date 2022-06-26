@@ -12,7 +12,8 @@ if (isset($_SESSION['loggedIn'])) {
 <body>
     <?php require_once './modules/navbar.php'; ?>
     <main>
-        <div class="login">
+        <section class="login">
+            <h2>Login:</h2>
             <form action="../php/login.php" method="post">
                 <input required class="simple-input" placeholder="Username" type="text" id="username" name="username">
                 <input required class="simple-input" placeholder="Password" type="password" id="password"
@@ -22,7 +23,7 @@ if (isset($_SESSION['loggedIn'])) {
             <?php if (isset($_SESSION["login-error"])) echo ("<p class=\"error\">" . (string)$_SESSION["login-error"] . "</p>"); ?>
             <form class="redirect-btn" action="pages/login.php#register"><button class="simple-btn">Register</button>
             </form>
-        </div>
+        </section>
     </main>
     <?php require_once './register.php'; ?>
 </body>

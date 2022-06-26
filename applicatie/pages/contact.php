@@ -9,7 +9,7 @@ require_once './modules/head.php';
     <?php require_once './modules/navbar.php'; ?>
     <main>
         <div class="contact">
-            <div>
+            <section>
                 <h3>Contact information:</h3>
                 <ul>
                     <li>Tel: 0318-123456</li>
@@ -18,17 +18,18 @@ require_once './modules/head.php';
                     <li>City: Arnhem</li>
                     <li>Postalcode: 6826 CC</li>
                 </ul>
-            </div>
-            <div>
+            </section>
+            <section>
                 <h3>Privacyverklaring:</h3>
-                <a class="simple-btn" href="../assets/privacyverklaring.pdf" download="privacyverklaring fletnix">Download</a>
-            </div>
-            <div class="about-us">
+                <a class="simple-btn" href="../assets/privacyverklaring.pdf"
+                    download="privacyverklaring fletnix">Download</a>
+            </section>
+            <section class="about-us">
                 <h3>About us:</h3>
                 <p>At Fletnlix, we want to entertain the world. Whatever your taste, and no matter where you live, we
                     give you access to best-in-class TV series, documentaries and feature films.</p>
                 <p>Fletnix is made as a project for school but now the wolrd has access to our library!</p>
-            </div>
+            </section>
         </div>
     </main>
 </body>

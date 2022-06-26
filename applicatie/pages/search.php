@@ -46,12 +46,12 @@ if (isset($_GET['genre']) || isset($_GET['title'])) {
                     <a href="/pages/filmdetail.php?fid=<?= $movie['movie_id'] ?>">
                         <div class="movie-card-grid">
                             <img src="../assets/images/<?= $movie['cover_image'] ?>" alt="">
-                            <div class="movie-card-info">
+                            <article class="movie-card-info">
                                 <h2><?= $movie['title'] ?></h2>
                                 <p><span>Genre:</span><?= $movie['genre'] ?></p>
                                 <p><span>Description:</span><?= $movie['description'] ?></p>
                                 <p><span>Duration:</span><?= $movie['duration'] ?> minutes</p>
-                            </div>
+                            </article>
                         </div>
                     </a>
                 </div>

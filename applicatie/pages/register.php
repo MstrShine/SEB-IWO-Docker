@@ -8,8 +8,8 @@ fetchRegisterFormData($countries, $contracts, $payMethods);
 ?>
 
 <div id="register" class="overlay">
-    <div class="popup">
-        <h2>Register</h2>
+    <section class="popup">
+        <h2>Register:</h2>
         <a class="close" href="pages/login.php#">&times;</a>
         <div class="content">
             <form action="../php/register.php" method="post">
@@ -63,5 +63,5 @@ fetchRegisterFormData($countries, $contracts, $payMethods);
                 <button class="simple-btn" type="submit">Register</button>
             </form>
         </div>
-    </div>
+    </section>
 </div>
